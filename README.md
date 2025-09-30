@@ -1,4 +1,4 @@
-# AlexandreExercicioAula7# 
+AlexandreExercicioAula7 
 
 🎲 BoardGame Catalog - João Pedro de Oliveira Braga
 
