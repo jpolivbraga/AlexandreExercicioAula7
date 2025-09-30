@@ -1,0 +1,43 @@
+stages:
+  - build
+  - test
+  - package
+  - run
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+build:
+  stage: build
+  image: maven:3.9.6-eclipse-temurin-17
+  script:
+    - mvn clean compile
+  only:
+    - main
+
+test:
+  stage: test
+  image: maven:3.9.6-eclipse-temurin-17
+  script:
+    - mvn test
+  only:
+    - main
+
+package:
+  stage: package
+  image: maven:3.9.6-eclipse-temurin-17
+  script:
+    - mvn package
+  artifacts:
+    paths:
+      - target/*.jar
+  only:
+    - main
+
+run:
+  stage: run
+  image: maven:3.9.6-eclipse-temurin-17
+  script:
+    - mvn exec:java -Dexec.mainClass="com.example.boardgame.Main"
+  only:
+    - main
